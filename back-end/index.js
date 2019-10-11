@@ -2,7 +2,12 @@ const express = require("express");
 const cors = require("cors");
 const bodyParser = require("body-parser");
 
-const { addUser, getAllUsers } = require("./database");
+const {
+  addUser,
+  getAllUsers,
+  getNumberOfUsers,
+  getLatestUpdateUserTimestamp
+} = require("./database");
 
 const PORT = process.env.PORT || 8080;
 
@@ -17,10 +22,17 @@ app.post("/user", (request, response) => {
 });
 
 app.get("/users", async (request, response) => {
-  // getAllUsers().then(uses => res.send({ users }));
-
+  const latestUpdateTimestamp = await getLatestUpdateUserTimestamp();
+  if (
+    Number(request.query.latestUpdateTimestamp) ===
+    Number(latestUpdateTimestamp)
+  ) {
+    response.sendStatus(304);
+    return;
+  }
+  const numberOfUsers = await getNumberOfUsers();
   const allUsers = await getAllUsers();
-  response.send(allUsers);
+  response.send({ allUsers, numberOfUsers, latestUpdateTimestamp });
 });
 
 app.listen(PORT, () => console.log(`The app listening on port ${PORT}!`));
