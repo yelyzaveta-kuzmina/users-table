@@ -35,16 +35,18 @@ class UsersTable extends React.Component {
 
   render() {
     const { users } = this.state;
-    console.log(this.state);
-
     return (
       <div className={styles.wrapper}>
         <Header />
         <div className={styles.table}>
+          <div className={styles.tablesHeader}>
+            <div className={styles.nameHeader}>Name</div>
+            <div className={styles.surnameHeader}>Surname</div>
+          </div>
           {users.map((user, index) => (
             <div key={index} className={styles.users}>
-              <span className={styles.userFirsName}>{user.name}</span>
-              <span className={styles.userAge}>{user.surname}</span>
+              <span className={styles.firstname}>{user.name}</span>
+              <span className={styles.surname}>{user.surname}</span>
             </div>
           ))}
         </div>
