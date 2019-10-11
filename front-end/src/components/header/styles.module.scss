@@ -1,0 +1,28 @@
+input {
+  outline: none;
+  font-size: 15px;
+  height: 65%;
+}
+
+.header {
+  .inputs {
+    display: flex;
+    justify-content: center;
+  }
+
+  display: flex;
+  justify-content: space-between;
+  height: 45px;
+  padding: 15px;
+  border-bottom: 1px solid darkgrey;
+
+  .nameInput {
+    margin-right: 5px;
+  }
+
+  .submitButton {
+    outline: none;
+    cursor: pointer;
+    border: none;
+  }
+}

@@ -1,63 +1,52 @@
 import React from "react";
+import { StatusCode } from "../../utils.js";
+import Header from "../header";
+import styles from "./styles.module.scss";
 
 const API_ORIGIN = "http://192.168.0.94:8080";
 
 class UsersTable extends React.Component {
-  state = { users: [] };
+  state = { users: [], numberOfUsers: 0, latestUpdateTimestamp: undefined };
 
   componentDidMount() {
     setInterval(this.refetchUsers, 1000);
   }
+
   refetchUsers = () => {
-    fetch(`${API_ORIGIN}/users`)
-      .then(response => response.json())
-      .then(allUsers => this.setState({ users: allUsers }))
+    const { latestUpdateTimestamp } = this.state;
+    fetch(`${API_ORIGIN}/users?latestUpdateTimestamp=${latestUpdateTimestamp}`)
+      .then(async response => {
+        if (response.status === StatusCode.NOT_MODIFIED) {
+          return;
+        }
+        const {
+          allUsers,
+          numberOfUsers,
+          latestUpdateTimestamp
+        } = await response.json();
+        this.setState({
+          users: allUsers,
+          numberOfUsers,
+          latestUpdateTimestamp
+        });
+      })
       .catch(error => console.error(error));
-  };
-
-  onInputChange = event => {
-    this.setState({
-      [event.target.name]: event.target.value
-    });
-  };
-
-  onSendContent = () => {
-    const { name, surname } = this.state;
-    if (name && surname) {
-      fetch(`${API_ORIGIN}/user`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-          name,
-          surname
-        })
-      });
-    } else {
-      console.log("fill in missing fields");
-    }
   };
 
   render() {
     const { users } = this.state;
+    console.log(this.state);
+
     return (
-      <div>
-        {users.map((user, index) => (
-          <div key={index}>{user.name}</div>
-        ))}
-        <button onClick={this.onSendContent}>Send data</button>
-        <div>
-          <input
-            onChange={this.onInputChange}
-            name="name"
-            placeholder="name"
-          ></input>
-          <input
-            onChange={this.onInputChange}
-            name="surname"
-            placeholder="surname"
-          ></input>
+      <div className={styles.wrapper}>
+        <Header />
+        <div className={styles.table}>
+          {users.map((user, index) => (
+            <div key={index} className={styles.users}>
+              <span className={styles.userFirsName}>{user.name}</span>
+              <span className={styles.userAge}>{user.surname}</span>
+            </div>
+          ))}
         </div>
       </div>
     );

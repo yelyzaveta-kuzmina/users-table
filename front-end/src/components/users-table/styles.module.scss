@@ -1,0 +1,19 @@
+.wrapper {
+  box-shadow: -1px 0px 9px -4px black;
+  padding: 10px;
+
+  .table {
+    margin-top: 15px;
+
+    .users {
+      display: flex;
+    }
+
+    .userLastName,
+    .userFirsName,
+    .userAge {
+      width: 85px;
+      margin-right: 10px;
+    }
+  }
+}

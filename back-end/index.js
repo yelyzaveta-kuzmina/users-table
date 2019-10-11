@@ -23,10 +23,7 @@ app.post("/user", (request, response) => {
 
 app.get("/users", async (request, response) => {
   const latestUpdateTimestamp = await getLatestUpdateUserTimestamp();
-  if (
-    Number(request.query.latestUpdateTimestamp) ===
-    Number(latestUpdateTimestamp)
-  ) {
+  if (Number(request.query.latestUpdateTimestamp) === latestUpdateTimestamp) {
     response.sendStatus(304);
     return;
   }
