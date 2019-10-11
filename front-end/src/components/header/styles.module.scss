@@ -16,6 +16,8 @@ input {
   }
 
   display: flex;
+  position: sticky;
+  top: 0;
   justify-content: space-between;
   height: 45px;
   padding: 5px 0 5px 0;
