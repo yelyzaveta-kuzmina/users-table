@@ -1,9 +1,14 @@
 import React from "react";
+import UsersTable from "../users-table";
 // import styles from './styles.module.scss';
 
 class Application extends React.Component {
   render() {
-    return <div>123</div>;
+    return (
+      <div>
+        <UsersTable />
+      </div>
+    );
   }
 }
 
