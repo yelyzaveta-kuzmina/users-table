@@ -1,24 +1,29 @@
 .wrapper {
+  display: flex;
+  flex-direction: column;
+  position: relative;
   box-shadow: -1px 0px 9px -4px black;
-  padding: 20px;
   height: 50%;
-  border-radius: 15px;
-  overflow-y: scroll;
+
+  .tableHeader {
+    top: 15%;
+    padding: 0 15px;
+    margin-top: 5px;
+    background-color: white;
+
+    .nameHeader,
+    .surnameHeader {
+      display: inline-block;
+      width: 85px;
+      margin-right: 15px;
+      margin-bottom: 10px;
+      font-weight: bold;
+    }
+  }
 
   .table {
-    margin-top: 15px;
-
-    .tablesHeader {
-      display: flex;
-      margin-bottom: 15px;
-
-      .nameHeader,
-      .surnameHeader {
-        width: 85px;
-        margin-right: 15px;
-        font-weight: bold;
-      }
-    }
+    padding: 15px;
+    overflow-y: auto;
 
     .users {
       display: flex;

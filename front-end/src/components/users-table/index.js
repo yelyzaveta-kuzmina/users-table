@@ -38,11 +38,11 @@ class UsersTable extends React.Component {
     return (
       <div className={styles.wrapper}>
         <Header />
+        <span className={styles.tableHeader}>
+          <div className={styles.nameHeader}>Name</div>
+          <div className={styles.surnameHeader}>Surname</div>
+        </span>
         <div className={styles.table}>
-          <div className={styles.tablesHeader}>
-            <div className={styles.nameHeader}>Name</div>
-            <div className={styles.surnameHeader}>Surname</div>
-          </div>
           {users.map((user, index) => (
             <div key={index} className={styles.users}>
               <span className={styles.firstname}>{user.name}</span>

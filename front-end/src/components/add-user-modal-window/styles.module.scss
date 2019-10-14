@@ -1,0 +1,37 @@
+input {
+  outline: none;
+  font-size: 15px;
+  height: 65%;
+  padding: 3px;
+
+  &::placeholder {
+    font-variant: small-caps;
+  }
+}
+
+.header {
+  .inputs {
+    display: flex;
+    justify-content: center;
+  }
+
+  display: flex;
+  position: sticky;
+  top: 0;
+  justify-content: space-between;
+  height: 45px;
+  padding: 15px 0 5px 0;
+  border-bottom: 1px solid darkgrey;
+  overflow: hidden;
+  background-color: white;
+
+  .nameInput {
+    margin-right: 5px;
+  }
+
+  .submitButton {
+    outline: none;
+    cursor: pointer;
+    border: none;
+  }
+}

@@ -1,51 +1,30 @@
 import React from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPlusCircle, faTrashAlt } from "@fortawesome/free-solid-svg-icons";
+import AddUserModalWindow from "../add-user-modal-window";
 import styles from "./styles.module.scss";
 
-const API_ORIGIN = "http://192.168.0.94:8080";
-
 class Header extends React.Component {
-  onInputChange = event => {
-    this.setState({
-      [event.target.name]: event.target.value
-    });
-  };
+  state = { isUserBeingAdded: false };
 
-  onSendContent = () => {
-    const { name, surname } = this.state;
-    if (name && surname) {
-      fetch(`${API_ORIGIN}/user`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-          name,
-          surname
-        })
-      });
-    } else {
-      console.log("fill in missing fields");
-    }
+  onModalOpen = () => {
+    this.setState({ isUserBeingAdded: true });
   };
   render() {
+    const { isUserBeingAdded } = this.state;
     return (
       <div className={styles.header}>
-        <div className={styles.inputs}>
-          <input
-            className={styles.nameInput}
-            onChange={this.onInputChange}
-            name="name"
-            placeholder="name"
-          ></input>
-          <input
-            className={styles.surnameInput}
-            onChange={this.onInputChange}
-            name="surname"
-            placeholder="surname"
-          ></input>
-        </div>
-        <button className={styles.submitButton} onClick={this.onSendContent}>
-          Submit
+        {isUserBeingAdded && <AddUserModalWindow />}
+        <button className={styles.button} onClick={this.onModalOpen}>
+          <FontAwesomeIcon
+            className={styles.addRemoveIcon}
+            icon={faPlusCircle}
+          />
+          Add
+        </button>
+        <button className={styles.button}>
+          <FontAwesomeIcon className={styles.addRemoveIcon} icon={faTrashAlt} />
+          Delete
         </button>
       </div>
     );
