@@ -44,7 +44,7 @@ class UsersTable extends React.Component {
         </span>
         <div className={styles.table}>
           {users.map((user, index) => (
-            <div key={index} className={styles.users}>
+            <div key={index} className={styles.userRow}>
               <span className={styles.firstname}>{user.name}</span>
               <span className={styles.surname}>{user.surname}</span>
             </div>

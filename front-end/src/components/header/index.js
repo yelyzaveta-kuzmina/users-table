@@ -1,6 +1,6 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPlusCircle, faTrashAlt } from "@fortawesome/free-solid-svg-icons";
+import { faPlusCircle } from "@fortawesome/free-solid-svg-icons";
 import AddUserModalWindow from "../add-user-modal-window";
 import styles from "./styles.module.scss";
 
@@ -21,10 +21,6 @@ class Header extends React.Component {
             icon={faPlusCircle}
           />
           Add
-        </button>
-        <button className={styles.button}>
-          <FontAwesomeIcon className={styles.addRemoveIcon} icon={faTrashAlt} />
-          Delete
         </button>
       </div>
     );
