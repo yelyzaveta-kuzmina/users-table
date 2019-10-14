@@ -1,4 +1,6 @@
 import React from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTrashAlt } from "@fortawesome/free-solid-svg-icons";
 import { StatusCode } from "../../utils.js";
 import Header from "../header";
 import styles from "./styles.module.scss";
@@ -45,8 +47,13 @@ class UsersTable extends React.Component {
         <div className={styles.table}>
           {users.map((user, index) => (
             <div key={index} className={styles.userRow}>
-              <span className={styles.firstname}>{user.name}</span>
-              <span className={styles.surname}>{user.surname}</span>
+              <div className={styles.userDetails}>
+                <span className={styles.firstname}>{user.name}</span>
+                <span className={styles.surname}>{user.surname}</span>
+              </div>
+              <button className={styles.removeButton}>
+                <FontAwesomeIcon icon={faTrashAlt} />
+              </button>
             </div>
           ))}
         </div>

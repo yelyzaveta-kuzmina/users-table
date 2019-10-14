@@ -10,35 +10,62 @@
     padding: 0 15px;
     margin-top: 5px;
     background-color: white;
+    margin-bottom: 10px;
 
     .nameHeader,
     .surnameHeader {
       display: inline-block;
-      width: 85px;
       margin-right: 15px;
-      margin-bottom: 10px;
+      width: 85px;
       font-weight: bold;
     }
   }
 
   .table {
-    padding: 15px;
     overflow-y: auto;
 
     .userRow {
       display: flex;
       height: 25px;
+      padding: 0 15px;
       cursor: pointer;
+
+      &:nth-child(2n) {
+        background-color: rgba(192, 192, 192, 0.1);
+      }
 
       &:hover {
         background-color: rgba(192, 192, 192, 0.2);
+        .removeButton {
+          visibility: visible;
+
+          &:hover {
+            color: rgb(128, 128, 128);
+          }
+        }
       }
-      .firstname,
-      .surname {
-        display: block;
-        width: 85px;
-        margin-right: 15px;
-        align-self: center;
+
+      .userDetails {
+        display: flex;
+        flex: 1;
+
+        .firstname,
+        .surname {
+          display: block;
+          width: 85px;
+          margin-right: 15px;
+          align-self: center;
+        }
+      }
+
+      .removeButton {
+        border: 0;
+        outline: none;
+        cursor: pointer;
+        visibility: hidden;
+        color: rgb(192, 192, 192);
+        background-color: transparent;
+        font-size: 15px;
       }
     }
   }
