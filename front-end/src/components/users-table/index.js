@@ -14,9 +14,13 @@ class UsersTable extends React.Component {
     setInterval(this.refetchUsers, 1000);
   }
 
-  refetchUsers = () => {
+  refetchUsers = ({ withCache = true } = {}) => {
     const { latestUpdateTimestamp } = this.state;
-    fetch(`${API_ORIGIN}/users?latestUpdateTimestamp=${latestUpdateTimestamp}`)
+    fetch(
+      `${API_ORIGIN}/users?latestUpdateTimestamp=${
+        withCache ? latestUpdateTimestamp : 0
+      }`
+    )
       .then(async response => {
         if (response.status === StatusCode.NOT_MODIFIED) {
           return;
@@ -35,6 +39,12 @@ class UsersTable extends React.Component {
       .catch(error => console.error(error));
   };
 
+  onDeleteUser = userId => {
+    fetch(`${API_ORIGIN}/user?id=${userId}`, {
+      method: "DELETE"
+    }).then(() => this.refetchUsers({ withCache: false }));
+  };
+
   render() {
     const { users } = this.state;
     return (
@@ -51,7 +61,10 @@ class UsersTable extends React.Component {
                 <span className={styles.firstname}>{user.name}</span>
                 <span className={styles.surname}>{user.surname}</span>
               </div>
-              <button className={styles.removeButton}>
+              <button
+                className={styles.removeButton}
+                onClick={() => this.onDeleteUser(user._id)}
+              >
                 <FontAwesomeIcon icon={faTrashAlt} />
               </button>
             </div>

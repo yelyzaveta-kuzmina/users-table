@@ -4,6 +4,7 @@ const bodyParser = require("body-parser");
 
 const {
   addUser,
+  removeUserById,
   getAllUsers,
   getNumberOfUsers,
   getLatestUpdateUserTimestamp
@@ -18,6 +19,12 @@ app.use(bodyParser.json());
 app.post("/user", (request, response) => {
   const user = request.body;
   addUser(user);
+  response.status(200).send();
+});
+
+app.delete("/user", (request, response) => {
+  const { id } = request.query;
+  removeUserById(id);
   response.status(200).send();
 });
 

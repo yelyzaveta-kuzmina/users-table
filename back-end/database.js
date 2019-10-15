@@ -18,6 +18,10 @@ const addUser = async user => {
   return new UserModel(user).save();
 };
 
+const removeUserById = async id => {
+  return UserModel.remove({ _id: id });
+};
+
 const getAllUsers = () => {
   const users = UserModel.find();
   return users;
@@ -33,6 +37,7 @@ const getLatestUpdateUserTimestamp = () => {
 
 module.exports = {
   addUser,
+  removeUserById,
   getAllUsers,
   getLatestUpdateUserTimestamp,
   getNumberOfUsers

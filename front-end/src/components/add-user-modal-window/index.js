@@ -27,6 +27,7 @@ class AddUserModalWindow extends React.Component {
       console.log("fill in missing fields");
     }
   };
+
   render() {
     return (
       <div className={styles.modalWindow}>
