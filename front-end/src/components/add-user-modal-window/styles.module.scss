@@ -12,22 +12,6 @@ input {
 }
 
 .modalWindow {
-  .radioButtons {
-    display: flex;
-    flex-direction: row;
-    flex: 1;
-
-    .maleRadioButton {
-      display: inline-block;
-      color: blue;
-    }
-
-    .femaleRadioButton {
-      display: inline-block;
-      color: pink;
-    }
-  }
-
   display: flex;
   flex-direction: column;
   justify-content: flex-start;

@@ -5,6 +5,8 @@ import styles from "./styles.module.scss";
 const API_ORIGIN = "http://192.168.0.94:8080";
 
 class AddUserModalWindow extends React.Component {
+  state = {};
+
   onInputChange = event => {
     this.setState({
       [event.target.name]: event.target.value
@@ -39,12 +41,14 @@ class AddUserModalWindow extends React.Component {
         <Autocomplete />
         <div className={styles.inputs}>
           <input
+            autoComplete="off"
             className={styles.nameInput}
             onChange={this.onInputChange}
             name="name"
             placeholder="name"
           ></input>
           <input
+            autoComplete="off"
             className={styles.surnameInput}
             onChange={this.onInputChange}
             name="surname"

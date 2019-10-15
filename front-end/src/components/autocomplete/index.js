@@ -1,6 +1,21 @@
 import React from "react";
 import Select from "react-select";
 
+const customStyles = {
+  option: (provided, state) => ({
+    ...provided,
+    cursor: "pointer"
+  })
+};
+
+const autocompleteTheme = theme => ({
+  ...theme,
+  colors: {
+    ...theme.colors,
+    primary: "rgb(76,169,105)"
+  }
+});
+
 class Autocomplete extends React.Component {
   state = { countries: [], selectedOption: null, err: undefined };
 
@@ -25,6 +40,9 @@ class Autocomplete extends React.Component {
     return (
       <div>
         <Select
+          theme={autocompleteTheme}
+          placeholder="Your country"
+          styles={customStyles}
           value={selectedOption}
           getOptionLabel={option => option.name}
           onChange={this.handleChange}
