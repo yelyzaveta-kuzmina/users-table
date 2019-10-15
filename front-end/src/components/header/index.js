@@ -5,16 +5,21 @@ import AddUserModalWindow from "../add-user-modal-window";
 import styles from "./styles.module.scss";
 
 class Header extends React.Component {
-  state = { isUserBeingAdded: false };
+  state = { isUserBeingAdded: false, hasContentBeenSent: false };
 
   onModalOpen = () => {
     this.setState({ isUserBeingAdded: true });
   };
+
+  onModalClose = () => {
+    this.setState({ isUserBeingAdded: false });
+  };
+
   render() {
     const { isUserBeingAdded } = this.state;
     return (
       <div className={styles.header}>
-        {isUserBeingAdded && <AddUserModalWindow />}
+        {isUserBeingAdded && <AddUserModalWindow onClose={this.onModalClose} />}
         <button className={styles.button} onClick={this.onModalOpen}>
           <FontAwesomeIcon
             className={styles.addRemoveIcon}

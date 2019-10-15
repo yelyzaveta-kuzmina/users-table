@@ -1,4 +1,5 @@
 import React from "react";
+import Autocomplete from "../autocomplete";
 import styles from "./styles.module.scss";
 
 const API_ORIGIN = "http://192.168.0.94:8080";
@@ -10,7 +11,7 @@ class AddUserModalWindow extends React.Component {
     });
   };
 
-  onSendContent = () => {
+  onSendContent = props => {
     const { name, surname } = this.state;
     if (name && surname) {
       fetch(`${API_ORIGIN}/user`, {
@@ -22,15 +23,20 @@ class AddUserModalWindow extends React.Component {
           name,
           surname
         })
-      });
+      }).then(this.props.onClose);
     } else {
-      console.log("fill in missing fields");
+      window.alert("Fill in missing fields");
     }
+
+    this.setState({
+      hasContentBeenSent: true
+    });
   };
 
   render() {
     return (
       <div className={styles.modalWindow}>
+        <Autocomplete />
         <div className={styles.inputs}>
           <input
             className={styles.nameInput}
