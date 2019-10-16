@@ -2,22 +2,11 @@ import React from "react";
 import classNames from "classnames";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrashAlt } from "@fortawesome/free-solid-svg-icons";
-import { StatusCode } from "../../utils.js";
+import { StatusCode, formatGender } from "../../utils.js";
 import Header from "../header";
 import styles from "./styles.module.scss";
 
 const API_ORIGIN = "http://192.168.0.94:8080";
-
-const formatGender = gender => {
-  switch (gender) {
-    case "male":
-      return "♂";
-    case "female":
-      return "♀";
-    default:
-      return "-";
-  }
-};
 
 class UsersTable extends React.Component {
   state = { users: [], numberOfUsers: 0, latestUpdateTimestamp: undefined };
