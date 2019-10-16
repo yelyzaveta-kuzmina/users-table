@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import classNames from "classnames";
 import styles from "./styles.module.scss";
 
-const RadioButton = ({ className, title, name, value, variant = "male" }) => {
+const RadioButton = ({ className, title, name, value, variant, onChange }) => {
   return (
     <div
       className={classNames(className, styles.container, {
@@ -14,6 +14,7 @@ const RadioButton = ({ className, title, name, value, variant = "male" }) => {
       <label className={styles.container}>
         {title}
         <input
+          onChange={onChange}
           className={styles.container}
           type="radio"
           name={name}

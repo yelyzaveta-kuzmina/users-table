@@ -6,7 +6,7 @@ import styles from "./styles.module.scss";
 const API_ORIGIN = "http://192.168.0.94:8080";
 
 class AddUserModalWindow extends React.Component {
-  state = { selectedCountry: null };
+  state = { selectedCountry: "", gender: "" };
 
   onInputChange = event => {
     this.setState({
@@ -14,12 +14,19 @@ class AddUserModalWindow extends React.Component {
     });
   };
 
-  handleChange = selectedCountry => {
+  handleCountryChange = selectedCountry => {
     this.setState({ selectedCountry });
   };
 
+  handleGenderChange = event => {
+    const { value } = event.target;
+    this.setState({
+      gender: value
+    });
+  };
+
   onSendContent = props => {
-    const { name, surname, selectedCountry } = this.state;
+    const { name, surname, selectedCountry, gender } = this.state;
     if (name && surname && selectedCountry) {
       fetch(`${API_ORIGIN}/user`, {
         method: "POST",
@@ -29,7 +36,8 @@ class AddUserModalWindow extends React.Component {
         body: JSON.stringify({
           name,
           surname,
-          country: selectedCountry.name
+          country: selectedCountry.name,
+          gender
         })
       }).then(this.props.onClose);
     } else {
@@ -41,10 +49,10 @@ class AddUserModalWindow extends React.Component {
     const { selectedCountry } = this.state;
     return (
       <div className={styles.modalWindow}>
-        <GenderRadioButtons />
+        <GenderRadioButtons onGenderSelect={this.handleGenderChange} />
         <Autocomplete
           selectedCountry={selectedCountry}
-          onCountrySelect={this.handleChange}
+          onCountrySelect={this.handleCountryChange}
         />
         <div className={styles.inputs}>
           <input
