@@ -34,7 +34,6 @@ class Autocomplete extends React.Component {
   render() {
     const { countries } = this.state;
     const { selectedCountry, onCountrySelect } = this.props;
-    console.log(selectedCountry);
 
     return (
       <div>

@@ -1,4 +1,5 @@
 import React from "react";
+import GenderRadioButtons from "../radio-buttons";
 import Autocomplete from "../autocomplete";
 import styles from "./styles.module.scss";
 
@@ -40,6 +41,7 @@ class AddUserModalWindow extends React.Component {
     const { selectedCountry } = this.state;
     return (
       <div className={styles.modalWindow}>
+        <GenderRadioButtons />
         <Autocomplete
           selectedCountry={selectedCountry}
           onCountrySelect={this.handleChange}
