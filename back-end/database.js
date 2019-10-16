@@ -7,7 +7,8 @@ mongoose.connect(MONGO_URL, { useNewUrlParser: true });
 var userSchema = new mongoose.Schema(
   {
     name: String,
-    surname: String
+    surname: String,
+    country: String
   },
   { timestamps: { createdAt: "updatedAt", updatedAt: "createdAt" } }
 );

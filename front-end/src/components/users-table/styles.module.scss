@@ -13,7 +13,8 @@
     margin-bottom: 10px;
 
     .nameHeader,
-    .surnameHeader {
+    .surnameHeader,
+    .countryHeader {
       display: inline-block;
       margin-right: 15px;
       width: 85px;
@@ -50,7 +51,8 @@
         flex: 1;
 
         .firstname,
-        .surname {
+        .surname,
+        .country {
           display: block;
           width: 85px;
           margin-right: 15px;

@@ -5,7 +5,7 @@ import styles from "./styles.module.scss";
 const API_ORIGIN = "http://192.168.0.94:8080";
 
 class AddUserModalWindow extends React.Component {
-  state = {};
+  state = { selectedCountry: null };
 
   onInputChange = event => {
     this.setState({
@@ -13,9 +13,13 @@ class AddUserModalWindow extends React.Component {
     });
   };
 
+  handleChange = selectedCountry => {
+    this.setState({ selectedCountry });
+  };
+
   onSendContent = props => {
-    const { name, surname } = this.state;
-    if (name && surname) {
+    const { name, surname, selectedCountry } = this.state;
+    if (name && surname && selectedCountry) {
       fetch(`${API_ORIGIN}/user`, {
         method: "POST",
         headers: {
@@ -23,22 +27,23 @@ class AddUserModalWindow extends React.Component {
         },
         body: JSON.stringify({
           name,
-          surname
+          surname,
+          country: selectedCountry.name
         })
       }).then(this.props.onClose);
     } else {
       window.alert("Fill in missing fields");
     }
-
-    this.setState({
-      hasContentBeenSent: true
-    });
   };
 
   render() {
+    const { selectedCountry } = this.state;
     return (
       <div className={styles.modalWindow}>
-        <Autocomplete />
+        <Autocomplete
+          selectedCountry={selectedCountry}
+          onCountrySelect={this.handleChange}
+        />
         <div className={styles.inputs}>
           <input
             autoComplete="off"

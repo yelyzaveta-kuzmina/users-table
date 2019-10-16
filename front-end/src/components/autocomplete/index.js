@@ -4,7 +4,9 @@ import Select from "react-select";
 const customStyles = {
   option: (provided, state) => ({
     ...provided,
-    cursor: "pointer"
+    cursor: "pointer",
+    backgroundColor: state.isFocused ? "rgb(249,249,249)" : "white",
+    color: state.isFocused ? "black" : "grey"
   })
 };
 
@@ -17,7 +19,7 @@ const autocompleteTheme = theme => ({
 });
 
 class Autocomplete extends React.Component {
-  state = { countries: [], selectedOption: null, err: undefined };
+  state = { countries: [], err: undefined };
 
   componentDidMount() {
     try {
@@ -29,13 +31,10 @@ class Autocomplete extends React.Component {
     }
   }
 
-  handleChange = selectedOption => {
-    this.setState({ selectedOption });
-    console.log(`Option selected:`, selectedOption);
-  };
-
   render() {
-    const { countries, selectedOption } = this.state;
+    const { countries } = this.state;
+    const { selectedCountry, onCountrySelect } = this.props;
+    console.log(selectedCountry);
 
     return (
       <div>
@@ -43,9 +42,9 @@ class Autocomplete extends React.Component {
           theme={autocompleteTheme}
           placeholder="Your country"
           styles={customStyles}
-          value={selectedOption}
+          value={selectedCountry}
           getOptionLabel={option => option.name}
-          onChange={this.handleChange}
+          onChange={onCountrySelect}
           options={countries}
         />
       </div>

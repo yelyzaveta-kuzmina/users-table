@@ -53,6 +53,7 @@ class UsersTable extends React.Component {
         <span className={styles.tableHeader}>
           <div className={styles.nameHeader}>Name</div>
           <div className={styles.surnameHeader}>Surname</div>
+          <div className={styles.countryHeader}>Country</div>
         </span>
         <div className={styles.table}>
           {users.map((user, index) => (
@@ -60,6 +61,7 @@ class UsersTable extends React.Component {
               <div className={styles.userDetails}>
                 <span className={styles.firstname}>{user.name}</span>
                 <span className={styles.surname}>{user.surname}</span>
+                <span className={styles.country}>{user.country}</span>
               </div>
               <button
                 className={styles.removeButton}

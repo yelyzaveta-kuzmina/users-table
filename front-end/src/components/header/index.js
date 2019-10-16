@@ -5,7 +5,7 @@ import AddUserModalWindow from "../add-user-modal-window";
 import styles from "./styles.module.scss";
 
 class Header extends React.Component {
-  state = { isUserBeingAdded: false, hasContentBeenSent: false };
+  state = { isUserBeingAdded: false };
 
   onModalOpen = () => {
     this.setState({ isUserBeingAdded: true });
