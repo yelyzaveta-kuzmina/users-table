@@ -1,30 +1,17 @@
 import React from "react";
+import RadioButton from "../radio-button";
 import styles from "./styles.module.scss";
 
 const GenderRadioButtons = () => {
   return (
     <div className={styles.buttonsWrapper}>
-      <label className={styles.container}>
-        m
-        <input
-          type="radio"
-          name="gender"
-          value="male"
-          className={styles.radio}
-        />
-        <span className={styles.checkmark}></span>
-      </label>
-
-      <label className={styles.container}>
-        f
-        <input
-          type="radio"
-          name="gender"
-          value="male"
-          className={styles.radio}
-        />
-        <span className={styles.checkmark}></span>
-      </label>
+      <RadioButton title={"m"} name={"gender"} value={"male"} variant="male" />
+      <RadioButton
+        title={"f"}
+        name={"gender"}
+        value={"female"}
+        variant="female"
+      />
     </div>
   );
 };

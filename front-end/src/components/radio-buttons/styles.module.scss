@@ -1,66 +1,6 @@
-.container input {
-  position: absolute;
-  opacity: 0;
-  cursor: pointer;
-}
-
-.container input:checked ~ .checkmark:after {
-  width: 70%;
-  height: 70%;
-  background-color: rgba(20, 130, 200, 1);
-}
-
 .buttonsWrapper {
   display: flex;
   justify-content: space-around;
   margin-bottom: 5px;
   padding: 5px;
-
-  .container {
-    display: flex;
-    justify-content: center;
-    width: 23px;
-    position: relative;
-    padding-left: 20px;
-    cursor: pointer;
-    font-size: 20px;
-    user-select: none;
-
-    &:hover input ~ .checkmark {
-      &::after {
-        width: 40%;
-        height: 40%;
-        background-color: rgba(20, 130, 200, 0.3);
-      }
-      &:active {
-        &::after {
-          width: 60%;
-          height: 60%;
-        }
-      }
-    }
-
-    .checkmark {
-      position: absolute;
-      top: 0;
-      left: 0;
-      height: 15px;
-      width: 15px;
-      border: 2px solid rgba(20, 130, 200, 1);
-      border-radius: 50%;
-
-      &::after {
-        content: "";
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        width: 0;
-        height: 0;
-        border-radius: 50%;
-        transform: translate(-50%, -50%);
-        transition: color 100ms, width 100ms, height 100ms;
-        background-color: rgba(20, 130, 200, 0);
-      }
-    }
-  }
 }
