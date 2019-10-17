@@ -1,9 +1,7 @@
 import React from "react";
-import classNames from "classnames";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTrashAlt } from "@fortawesome/free-solid-svg-icons";
-import { StatusCode, formatGender } from "../../utils.js";
+import { StatusCode } from "../../utils.js";
 import Header from "../header";
+import UsersList from "../user-list";
 import styles from "./styles.module.scss";
 
 const API_ORIGIN = "http://192.168.0.94:8080";
@@ -12,7 +10,7 @@ class UsersTable extends React.Component {
   state = { users: [], numberOfUsers: 0, latestUpdateTimestamp: undefined };
 
   componentDidMount() {
-    setInterval(this.refetchUsers, 1000);
+    setInterval(this.refetchUsers, 15000);
   }
 
   refetchUsers = ({ withCache = true } = {}) => {
@@ -56,33 +54,9 @@ class UsersTable extends React.Component {
           <div className={styles.surnameHeader}>Surname</div>
           <div className={styles.countryHeader}>Country</div>
           <div className={styles.genderHeader}>Gender</div>
+          <div className={styles.ageHeader}>Age</div>
         </span>
-        <div className={styles.table}>
-          {users.map((user, index) => (
-            <div
-              key={index}
-              className={classNames(styles.userRow, {
-                [styles.male]: user.gender === "male",
-                [styles.female]: user.gender === "female"
-              })}
-            >
-              <div className={styles.userDetails}>
-                <span className={styles.firstname}>{user.name}</span>
-                <span className={styles.surname}>{user.surname}</span>
-                <span className={styles.country}>{user.country}</span>
-                <span className={styles.gender}>
-                  {formatGender(user.gender)}
-                </span>
-              </div>
-              <button
-                className={styles.removeButton}
-                onClick={() => this.onDeleteUser(user._id)}
-              >
-                <FontAwesomeIcon icon={faTrashAlt} />
-              </button>
-            </div>
-          ))}
-        </div>
+        <UsersList users={users} onDeleteUser={this.onDeleteUser} />
       </div>
     );
   }

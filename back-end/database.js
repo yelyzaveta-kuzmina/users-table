@@ -9,7 +9,8 @@ var userSchema = new mongoose.Schema(
     name: String,
     surname: String,
     country: String,
-    gender: String
+    gender: String,
+    age: Number
   },
   { timestamps: { createdAt: "updatedAt", updatedAt: "createdAt" } }
 );

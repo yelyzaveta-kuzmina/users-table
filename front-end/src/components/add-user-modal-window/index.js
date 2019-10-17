@@ -1,5 +1,5 @@
 import React from "react";
-import GenderRadioButtons from "../radio-buttons";
+import GenderRadioButtons from "../gender-radio-buttons";
 import Autocomplete from "../autocomplete";
 import styles from "./styles.module.scss";
 
@@ -26,8 +26,8 @@ class AddUserModalWindow extends React.Component {
   };
 
   onSendContent = props => {
-    const { name, surname, selectedCountry, gender } = this.state;
-    if (name && surname && selectedCountry) {
+    const { name, surname, selectedCountry, gender, age } = this.state;
+    if (name && surname && selectedCountry && gender && age) {
       fetch(`${API_ORIGIN}/user`, {
         method: "POST",
         headers: {
@@ -37,7 +37,8 @@ class AddUserModalWindow extends React.Component {
           name,
           surname,
           country: selectedCountry.name,
-          gender
+          gender,
+          age
         })
       }).then(this.props.onClose);
     } else {
@@ -68,6 +69,13 @@ class AddUserModalWindow extends React.Component {
             onChange={this.onInputChange}
             name="surname"
             placeholder="surname"
+          ></input>
+          <input
+            autoComplete="off"
+            className={styles.ageInput}
+            onChange={this.onInputChange}
+            name="age"
+            placeholder="age"
           ></input>
         </div>
         <button className={styles.submitButton} onClick={this.onSendContent}>

@@ -15,8 +15,10 @@
     .nameHeader,
     .surnameHeader,
     .countryHeader,
-    .genderHeader {
+    .genderHeader,
+    .ageHeader {
       display: inline-block;
+      text-align: center;
       margin-right: 15px;
       width: 85px;
       font-weight: bold;
@@ -26,74 +28,6 @@
     }
     .genderHeader {
       width: 50px;
-    }
-  }
-
-  .table {
-    overflow-y: auto;
-
-    .userRow {
-      display: flex;
-      height: 25px;
-      padding: 0 15px;
-      cursor: pointer;
-      background-color: rgba(230, 230, 230, 0.1);
-
-      &.male {
-        background-color: rgba(64, 132, 240, 0.1);
-      }
-
-      &.female {
-        background-color: rgba(229, 76, 123, 0.1);
-      }
-
-      &:hover {
-        background-color: rgba(192, 192, 192, 0.2);
-        &.male {
-          background-color: rgba(64, 132, 240, 0.2);
-        }
-
-        &.female {
-          background-color: rgba(229, 76, 123, 0.2);
-        }
-        .removeButton {
-          visibility: visible;
-
-          &:hover {
-            color: rgb(128, 128, 128);
-          }
-        }
-      }
-
-      .userDetails {
-        display: flex;
-        flex: 1;
-      }
-      .firstname,
-      .surname,
-      .country {
-        display: block;
-        margin-right: 15px;
-        align-self: center;
-        width: 85px;
-      }
-      .country {
-        width: 90px;
-      }
-      .gender {
-        width: 50px;
-        text-align: center;
-      }
-
-      .removeButton {
-        border: 0;
-        outline: none;
-        cursor: pointer;
-        visibility: hidden;
-        color: rgb(192, 192, 192);
-        background-color: transparent;
-        font-size: 15px;
-      }
     }
   }
 }
