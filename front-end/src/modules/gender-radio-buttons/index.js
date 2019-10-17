@@ -1,5 +1,5 @@
 import React from "react";
-import RadioButton from "../radio-button";
+import RadioButton from "../../components/radio-button";
 import styles from "./styles.module.scss";
 
 const GenderRadioButtons = ({ onGenderSelect }) => {

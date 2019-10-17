@@ -1,5 +1,5 @@
 import React from "react";
-import UsersTable from "../users-table";
+import UsersTable from "../../components/users-table";
 
 class App extends React.Component {
   render() {

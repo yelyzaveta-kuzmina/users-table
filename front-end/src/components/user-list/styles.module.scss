@@ -3,10 +3,14 @@
 
   .userRow {
     display: flex;
-    height: 25px;
-    padding: 0 15px;
+    height: auto;
+    padding: 3px 15px;
     cursor: pointer;
     background-color: rgba(230, 230, 230, 0.1);
+    border-bottom: 1px dotted lightgrey;
+    &:last-child {
+      border-bottom: none;
+    }
 
     &.male {
       background-color: rgba(64, 132, 240, 0.1);
@@ -41,6 +45,7 @@
     .firstname,
     .surname,
     .country,
+    .gender,
     .age {
       display: flex;
       justify-content: center;
@@ -49,11 +54,11 @@
       width: 85px;
     }
     .country {
-      width: 90px;
+      width: 110px;
+      text-align: center;
     }
     .gender {
       width: 50px;
-      margin-right: 15px;
       text-align: center;
     }
 

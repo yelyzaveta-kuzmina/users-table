@@ -1,7 +1,7 @@
 import React from "react";
 import { StatusCode } from "../../utils.js";
 import Header from "../header";
-import UsersList from "../user-list";
+import UsersList from "../../components/user-list";
 import styles from "./styles.module.scss";
 
 const API_ORIGIN = "http://192.168.0.94:8080";

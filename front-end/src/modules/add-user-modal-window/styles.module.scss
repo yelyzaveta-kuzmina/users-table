@@ -1,16 +1,3 @@
-input {
-  outline: none;
-  font-size: 15px;
-  height: 65%;
-  padding: 3px;
-  border: 0;
-  border-bottom: 1px solid #4ca969;
-
-  &::placeholder {
-    font-variant: small-caps;
-  }
-}
-
 .modalWindow {
   display: flex;
   flex-direction: column;
@@ -19,22 +6,40 @@ input {
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-  height: 50%;
+  height: 60%;
   padding: 10px;
   background-color: white;
   border: 1px solid #4ca969;
 
   .inputs {
     display: flex;
+    flex: auto;
     flex-direction: column;
-    flex: 1;
     justify-content: center;
+
+    .nameInput,
+    .surnameInput,
+    .ageInput {
+      outline: none;
+      font-size: 15px;
+      height: 65%;
+      padding: 3px;
+      margin-top: 10px;
+      border: 0;
+      border-bottom: 1px solid #4ca969;
+
+      &::placeholder {
+        font-variant: small-caps;
+      }
+    }
   }
 
   .submitButton {
     flex: 1;
-    outline: none;
+    font-family: inherit;
+    font-size: 15px;
     cursor: pointer;
+    outline: none;
     border: none;
   }
 }
