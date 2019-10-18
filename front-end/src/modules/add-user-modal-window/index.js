@@ -1,6 +1,6 @@
 import React from "react";
 import GenderRadioButtons from "../gender-radio-buttons";
-import Autocomplete from "../../components/autocomplete";
+import CountryAutocomplete from "../country-autocomplete";
 import Input from "../../components/input";
 import CloseSubmitButton from "../../components/close-submit-button";
 import styles from "./styles.module.scss";
@@ -54,7 +54,7 @@ class AddUserModalWindow extends React.Component {
     return (
       <div className={styles.modalWindow}>
         <GenderRadioButtons onGenderSelect={this.handleGenderChange} />
-        <Autocomplete
+        <CountryAutocomplete
           selectedCountry={selectedCountry}
           onCountrySelect={this.handleCountryChange}
         />
