@@ -6,7 +6,8 @@
   height: 50%;
 
   .tableHeader {
-    top: 15%;
+    display: flex;
+    height: 15px;
     padding: 0 15px;
     margin-top: 5px;
     background-color: white;
@@ -17,19 +18,34 @@
     .countryHeader,
     .genderHeader,
     .ageHeader {
-      display: inline-block;
-      text-align: center;
+      display: flex;
+      position: relative;
+      justify-content: center;
       margin-right: 15px;
       width: 85px;
       font-weight: bold;
 
-      .directionArrow {
+      .ascArrowDirection {
         border: 0;
         outline: 0;
-        padding: 0;
         cursor: pointer;
+        transition-duration: 0.5s;
+        background-color: transparent;
+        opacity: 0.2;
+
+        &:hover {
+          color: darkgrey;
+          font-size: 15px;
+          font-weight: bold;
+          opacity: 1;
+        }
+      }
+
+      .descArrowDirection {
+        transform: rotate(180deg);
       }
     }
+
     .countryHeader {
       width: 110px;
     }
