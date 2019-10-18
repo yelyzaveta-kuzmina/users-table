@@ -1,6 +1,7 @@
 import React from "react";
 import GenderRadioButtons from "../gender-radio-buttons";
 import Autocomplete from "../../components/autocomplete";
+import Input from "../../components/input";
 import CloseSubmitButton from "../../components/close-submit-button";
 import styles from "./styles.module.scss";
 
@@ -58,27 +59,21 @@ class AddUserModalWindow extends React.Component {
           onCountrySelect={this.handleCountryChange}
         />
         <div className={styles.inputs}>
-          <input
-            autoComplete="off"
-            className={styles.nameInput}
+          <Input
+            name={"name"}
+            placeholder={"name"}
             onChange={this.onInputChange}
-            name="name"
-            placeholder="name"
-          ></input>
-          <input
-            autoComplete="off"
-            className={styles.surnameInput}
+          />
+          <Input
+            name={"surname"}
+            placeholder={"surname"}
             onChange={this.onInputChange}
-            name="surname"
-            placeholder="surname"
-          ></input>
-          <input
-            autoComplete="off"
-            className={styles.ageInput}
+          />
+          <Input
+            name={"age"}
+            placeholder={"age"}
             onChange={this.onInputChange}
-            name="age"
-            placeholder="age"
-          ></input>
+          />
         </div>
         <div className={styles.buttonsWrapper}>
           <CloseSubmitButton name={"Submit"} onClick={this.onSendContent} />

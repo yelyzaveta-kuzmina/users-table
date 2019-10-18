@@ -16,22 +16,6 @@
     flex: auto;
     flex-direction: column;
     justify-content: center;
-
-    .nameInput,
-    .surnameInput,
-    .ageInput {
-      outline: none;
-      font-size: 15px;
-      height: 65%;
-      padding: 3px;
-      margin-top: 10px;
-      border: 0;
-      border-bottom: 1px solid #4ca969;
-
-      &::placeholder {
-        font-variant: small-caps;
-      }
-    }
   }
 
   .buttonsWrapper {
