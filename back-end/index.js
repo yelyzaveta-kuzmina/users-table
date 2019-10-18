@@ -2,13 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser');
 
-const {
-  addUser,
-  removeUserById,
-  getAllUsers,
-  getNumberOfUsers,
-  getLatestUpdateUserTimestamp
-} = require('./database');
+const { addUser, removeUserById, getAllUsers, getNumberOfUsers } = require('./database');
 
 const PORT = process.env.PORT || 8080;
 
@@ -29,14 +23,15 @@ app.delete('/user', (request, response) => {
 });
 
 app.get('/users', async (request, response) => {
-  const latestUpdateTimestamp = await getLatestUpdateUserTimestamp();
-  if (Number(request.query.latestUpdateTimestamp) === latestUpdateTimestamp) {
-    response.sendStatus(304);
-    return;
-  }
-  const numberOfUsers = await getNumberOfUsers();
-  const allUsers = await getAllUsers();
-  response.send({ allUsers, numberOfUsers, latestUpdateTimestamp });
+  const { sortingDirection, sortBy } = request.query;
+  const usersPromise = getAllUsers({
+    sortingDirection,
+    sortBy
+  });
+  const usersCountPromise = getNumberOfUsers();
+  const [users, usersCount] = await Promise.all([usersPromise, usersCountPromise]);
+
+  response.send({ users, numberOfUsers: usersCount });
 });
 
 app.listen(PORT, () => console.log(`The app listening on port ${PORT}!`));

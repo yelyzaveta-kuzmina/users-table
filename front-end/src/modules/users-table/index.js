@@ -1,5 +1,5 @@
 import React from 'react';
-import { StatusCode } from '../../utils.js';
+import { StatusCode, toggleSortingDirection } from '../../utils.js';
 import Header from '../header';
 import UsersList from '../../components/user-list';
 import styles from './styles.module.scss';
@@ -7,28 +7,39 @@ import styles from './styles.module.scss';
 const API_ORIGIN = process.env.API_ORIGIN || 'http://localhost:8080';
 
 class UsersTable extends React.Component {
-  state = { users: [], numberOfUsers: 0, latestUpdateTimestamp: undefined };
+  state = {
+    users: [],
+    numberOfUsers: 0,
+    sortBy: 'name',
+    sortingDirection: 'asc'
+  };
 
   componentDidMount() {
     this.refetchUsers();
     setInterval(this.refetchUsers, 1000);
   }
 
-  refetchUsers = ({ withCache = true } = {}) => {
-    const { latestUpdateTimestamp } = this.state;
-    fetch(`${API_ORIGIN}/users?latestUpdateTimestamp=${withCache ? latestUpdateTimestamp : 0}`)
+  refetchUsers = () => {
+    const { sortingDirection, sortBy } = this.state;
+    fetch(`${API_ORIGIN}/users?sortingDirection=${sortingDirection}&sortBy=${sortBy}`)
       .then(async (response) => {
         if (response.status === StatusCode.NOT_MODIFIED) {
           return;
         }
-        const { allUsers, numberOfUsers, latestUpdateTimestamp } = await response.json();
+        const { users, numberOfUsers } = await response.json();
         this.setState({
-          users: allUsers,
-          numberOfUsers,
-          latestUpdateTimestamp
+          users,
+          numberOfUsers
         });
       })
       .catch((error) => console.error(error));
+  };
+
+  onSortByChange = (sortBy) => {
+    const direction =
+      sortBy === this.state.sortBy ? toggleSortingDirection(this.state.sortingDirection) : 'asc';
+
+    this.setState({ sortBy, sortingDirection: direction }, this.refetchUsers);
   };
 
   onDeleteUser = (userId) => {
@@ -39,15 +50,26 @@ class UsersTable extends React.Component {
 
   render() {
     const { users } = this.state;
+
     return (
       <div className={styles.wrapper}>
         <Header />
         <span className={styles.tableHeader}>
-          <div className={styles.nameHeader}>Name</div>
+          <div className={styles.nameHeader}>
+            <button className={styles.directionArrow} onClick={() => this.onSortBsChange('name')}>
+              &darr;
+            </button>
+            Name
+          </div>
           <div className={styles.surnameHeader}>Surname</div>
           <div className={styles.countryHeader}>Country</div>
           <div className={styles.genderHeader}>Gender</div>
-          <div className={styles.ageHeader}>Age</div>
+          <div className={styles.ageHeader}>
+            <button className={styles.directionArrow} onClick={() => this.onSortByChange('age')}>
+              &darr;
+            </button>
+            Age
+          </div>
         </span>
         <UsersList users={users} onDeleteUser={this.onDeleteUser} />
       </div>

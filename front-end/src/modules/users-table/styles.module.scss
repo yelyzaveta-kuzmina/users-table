@@ -22,6 +22,13 @@
       margin-right: 15px;
       width: 85px;
       font-weight: bold;
+
+      .directionArrow {
+        border: 0;
+        outline: 0;
+        padding: 0;
+        cursor: pointer;
+      }
     }
     .countryHeader {
       width: 110px;

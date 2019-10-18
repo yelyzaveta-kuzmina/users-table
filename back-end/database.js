@@ -25,8 +25,11 @@ const removeUserById = async (id) => {
   return UserModel.remove({ _id: id });
 };
 
-const getAllUsers = () => {
-  const users = UserModel.find();
+const getAllUsers = async ({ sortingDirection, sortBy }) => {
+  const users = await UserModel.find()
+  .sort({
+    [sortBy]: sortingDirection
+  });
   return users;
 };
 

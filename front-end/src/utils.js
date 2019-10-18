@@ -12,3 +12,7 @@ export const formatGender = (gender) => {
       return '-';
   }
 };
+
+export const toggleSortingDirection = (direction) => {
+  return direction === 'asc' ? 'desc' : 'asc';
+};
