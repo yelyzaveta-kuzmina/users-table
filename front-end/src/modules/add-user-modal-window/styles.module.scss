@@ -34,12 +34,8 @@
     }
   }
 
-  .submitButton {
+  .buttonsWrapper {
+    display: flex;
     flex: 1;
-    font-family: inherit;
-    font-size: 15px;
-    cursor: pointer;
-    outline: none;
-    border: none;
   }
 }

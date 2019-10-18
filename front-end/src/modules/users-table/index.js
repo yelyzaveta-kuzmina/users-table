@@ -4,13 +4,14 @@ import Header from "../header";
 import UsersList from "../../components/user-list";
 import styles from "./styles.module.scss";
 
-const API_ORIGIN = "http://192.168.0.94:8080";
+const API_ORIGIN = process.env.API_ORIGIN || "http://localhost:8080";
 
 class UsersTable extends React.Component {
   state = { users: [], numberOfUsers: 0, latestUpdateTimestamp: undefined };
 
   componentDidMount() {
-    setInterval(this.refetchUsers, 15000);
+    this.refetchUsers();
+    setInterval(this.refetchUsers, 1000);
   }
 
   refetchUsers = ({ withCache = true } = {}) => {

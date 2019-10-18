@@ -1,9 +1,10 @@
 import React from "react";
 import GenderRadioButtons from "../gender-radio-buttons";
 import Autocomplete from "../../components/autocomplete";
+import CloseSubmitButton from "../../components/close-submit-button";
 import styles from "./styles.module.scss";
 
-const API_ORIGIN = "http://192.168.0.94:8080";
+const API_ORIGIN = process.env.API_ORIGIN || "http://localhost:8080";
 
 class AddUserModalWindow extends React.Component {
   state = { selectedCountry: "", gender: "" };
@@ -48,6 +49,7 @@ class AddUserModalWindow extends React.Component {
 
   render() {
     const { selectedCountry } = this.state;
+    const { onClose } = this.props;
     return (
       <div className={styles.modalWindow}>
         <GenderRadioButtons onGenderSelect={this.handleGenderChange} />
@@ -78,9 +80,10 @@ class AddUserModalWindow extends React.Component {
             placeholder="age"
           ></input>
         </div>
-        <button className={styles.submitButton} onClick={this.onSendContent}>
-          Submit
-        </button>
+        <div className={styles.buttonsWrapper}>
+          <CloseSubmitButton name={"Submit"} onClick={this.onSendContent} />
+          <CloseSubmitButton name={"Close"} onClick={onClose} />
+        </div>
       </div>
     );
   }
