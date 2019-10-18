@@ -1,10 +1,10 @@
-import React from "react";
-import { StatusCode } from "../../utils.js";
-import Header from "../header";
-import UsersList from "../../components/user-list";
-import styles from "./styles.module.scss";
+import React from 'react';
+import { StatusCode } from '../../utils.js';
+import Header from '../header';
+import UsersList from '../../components/user-list';
+import styles from './styles.module.scss';
 
-const API_ORIGIN = process.env.API_ORIGIN || "http://localhost:8080";
+const API_ORIGIN = process.env.API_ORIGIN || 'http://localhost:8080';
 
 class UsersTable extends React.Component {
   state = { users: [], numberOfUsers: 0, latestUpdateTimestamp: undefined };
@@ -16,32 +16,24 @@ class UsersTable extends React.Component {
 
   refetchUsers = ({ withCache = true } = {}) => {
     const { latestUpdateTimestamp } = this.state;
-    fetch(
-      `${API_ORIGIN}/users?latestUpdateTimestamp=${
-        withCache ? latestUpdateTimestamp : 0
-      }`
-    )
-      .then(async response => {
+    fetch(`${API_ORIGIN}/users?latestUpdateTimestamp=${withCache ? latestUpdateTimestamp : 0}`)
+      .then(async (response) => {
         if (response.status === StatusCode.NOT_MODIFIED) {
           return;
         }
-        const {
-          allUsers,
-          numberOfUsers,
-          latestUpdateTimestamp
-        } = await response.json();
+        const { allUsers, numberOfUsers, latestUpdateTimestamp } = await response.json();
         this.setState({
           users: allUsers,
           numberOfUsers,
           latestUpdateTimestamp
         });
       })
-      .catch(error => console.error(error));
+      .catch((error) => console.error(error));
   };
 
-  onDeleteUser = userId => {
+  onDeleteUser = (userId) => {
     fetch(`${API_ORIGIN}/user?id=${userId}`, {
-      method: "DELETE"
+      method: 'DELETE'
     }).then(() => this.refetchUsers({ withCache: false }));
   };
 

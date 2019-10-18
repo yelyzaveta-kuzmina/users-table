@@ -1,6 +1,6 @@
-const express = require("express");
-const cors = require("cors");
-const bodyParser = require("body-parser");
+const express = require('express');
+const cors = require('cors');
+const bodyParser = require('body-parser');
 
 const {
   addUser,
@@ -8,7 +8,7 @@ const {
   getAllUsers,
   getNumberOfUsers,
   getLatestUpdateUserTimestamp
-} = require("./database");
+} = require('./database');
 
 const PORT = process.env.PORT || 8080;
 
@@ -16,19 +16,19 @@ const app = express();
 app.use(cors());
 app.use(bodyParser.json());
 
-app.post("/user", (request, response) => {
+app.post('/user', (request, response) => {
   const user = request.body;
   addUser(user);
   response.status(200).send();
 });
 
-app.delete("/user", (request, response) => {
+app.delete('/user', (request, response) => {
   const { id } = request.query;
   removeUserById(id);
   response.status(200).send();
 });
 
-app.get("/users", async (request, response) => {
+app.get('/users', async (request, response) => {
   const latestUpdateTimestamp = await getLatestUpdateUserTimestamp();
   if (Number(request.query.latestUpdateTimestamp) === latestUpdateTimestamp) {
     response.sendStatus(304);

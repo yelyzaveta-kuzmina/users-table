@@ -1,16 +1,15 @@
-import React from "react";
-import PropTypes from "prop-types";
-import classNames from "classnames";
-import styles from "./styles.module.scss";
+import React from 'react';
+import PropTypes from 'prop-types';
+import classNames from 'classnames';
+import styles from './styles.module.scss';
 
 const RadioButton = ({ className, title, name, value, variant, onChange }) => {
   return (
     <div
       className={classNames(className, styles.container, {
-        [styles.male]: variant === "male",
-        [styles.female]: variant === "female"
-      })}
-    >
+        [styles.male]: variant === 'male',
+        [styles.female]: variant === 'female'
+      })}>
       <label className={styles.container}>
         {title}
         <input
@@ -27,7 +26,7 @@ const RadioButton = ({ className, title, name, value, variant, onChange }) => {
 };
 
 RadioButton.propTypes = {
-  variant: PropTypes.oneOf(["female", "male"])
+  variant: PropTypes.oneOf(['female', 'male'])
 };
 
 export default RadioButton;

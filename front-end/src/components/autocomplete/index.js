@@ -1,14 +1,8 @@
-import React from "react";
-import Select from "react-select";
-import { autocompleteTheme, customStyles } from "./styles.module.js";
+import React from 'react';
+import Select from 'react-select';
+import { autocompleteTheme, customStyles } from './styles.module.js';
 
-const Autocomplete = ({
-  placeholder,
-  value,
-  getOptionLabel,
-  onChange,
-  options
-}) => {
+const Autocomplete = ({ placeholder, value, getOptionLabel, onChange, options }) => {
   return (
     <Select
       theme={autocompleteTheme}

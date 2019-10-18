@@ -1,5 +1,5 @@
-import React from "react";
-import styles from "./styles.module.scss";
+import React from 'react';
+import styles from './styles.module.scss';
 
 const Input = ({ name, placeholder, onChange }) => {
   return (
@@ -8,8 +8,7 @@ const Input = ({ name, placeholder, onChange }) => {
       className={styles.input}
       onChange={onChange}
       name={name}
-      placeholder={placeholder}
-    ></input>
+      placeholder={placeholder}></input>
   );
 };
 

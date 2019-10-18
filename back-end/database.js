@@ -1,6 +1,6 @@
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
 
-const MONGO_URL = "mongodb://localhost:27017/users-table";
+const MONGO_URL = 'mongodb://localhost:27017/users-table';
 
 mongoose.connect(MONGO_URL, { useNewUrlParser: true });
 
@@ -12,16 +12,16 @@ var userSchema = new mongoose.Schema(
     gender: String,
     age: Number
   },
-  { timestamps: { createdAt: "updatedAt", updatedAt: "createdAt" } }
+  { timestamps: { createdAt: 'updatedAt', updatedAt: 'createdAt' } }
 );
 
-const UserModel = mongoose.model("User", userSchema);
+const UserModel = mongoose.model('User', userSchema);
 
-const addUser = async user => {
+const addUser = async (user) => {
   return new UserModel(user).save();
 };
 
-const removeUserById = async id => {
+const removeUserById = async (id) => {
   return UserModel.remove({ _id: id });
 };
 
@@ -33,7 +33,7 @@ const getAllUsers = () => {
 const getNumberOfUsers = () => UserModel.count();
 
 const getLatestUpdateUserTimestamp = () => {
-  return UserModel.findOne({}, {}, { sort: { updatedAt: -1 } }).then(user =>
+  return UserModel.findOne({}, {}, { sort: { updatedAt: -1 } }).then((user) =>
     Number(user.updatedAt)
   );
 };
