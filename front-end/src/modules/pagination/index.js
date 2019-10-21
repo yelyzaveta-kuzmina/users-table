@@ -1,4 +1,6 @@
 import React from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faAngleRight, faAngleLeft } from '@fortawesome/free-solid-svg-icons';
 import styles from './styles.module.scss';
 
 const Pagination = ({ page, usersPerPage, numberOfUsers, onUsersPerPageChange, onPageChange }) => {
@@ -17,10 +19,14 @@ const Pagination = ({ page, usersPerPage, numberOfUsers, onUsersPerPageChange, o
       </select>
       Showing: {firstUserOnPage}-{Math.min(lastUserOnPage, numberOfUsers)}
       <button disabled={page <= 1} onClick={() => onPageChange(page - 1)}>
-        Prev
+        <FontAwesomeIcon
+          icon={faAngleLeft}
+          disabled={page <= 1}
+          onClick={() => onPageChange(page - 1)}
+        />
       </button>
       <button disabled={page === pageNumbers} onClick={() => onPageChange(page + 1)}>
-        Next
+        <FontAwesomeIcon icon={faAngleRight} />
       </button>
     </div>
   );

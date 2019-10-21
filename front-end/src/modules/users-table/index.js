@@ -15,7 +15,7 @@ class UsersTable extends React.Component {
     sortBy: 'name',
     sortingDirection: 'asc',
     currentPage: 1,
-    usersPerPage: 5
+    usersPerPage: 10
   };
 
   componentDidMount() {

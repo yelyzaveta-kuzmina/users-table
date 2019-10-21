@@ -3,4 +3,25 @@
   position: absolute;
   bottom: -25px;
   right: 5px;
+
+  button {
+    outline: none;
+    cursor: pointer;
+    margin-right: 5px;
+
+    &:last-child {
+      margin-right: 0;
+    }
+
+    &:hover {
+      color: lightgrey;
+    }
+  }
+
+  select {
+    background-color: white;
+    cursor: pointer;
+    margin-right: 5px;
+    outline: none;
+  }
 }
