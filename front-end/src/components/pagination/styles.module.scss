@@ -1,8 +1,7 @@
 .pagination {
-  display: block;
-  position: absolute;
-  bottom: -25px;
-  right: 5px;
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 5px;
 
   button {
     outline: none;

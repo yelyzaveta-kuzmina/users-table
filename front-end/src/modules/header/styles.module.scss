@@ -3,6 +3,16 @@
   margin-right: 3px;
 }
 
+.overlay {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  transition: 1s;
+}
+
 .header {
   display: flex;
   padding: 10px;
@@ -17,5 +27,10 @@
     background-color: transparent;
     font-size: 15px;
     color: #f1f9f7;
+
+    &:hover {
+      font-size: 16px;
+      transition: 0.2s;
+    }
   }
 }

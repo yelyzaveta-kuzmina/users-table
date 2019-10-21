@@ -1,3 +1,5 @@
+$female-color: rgb(229, 76, 123);
+
 .container input {
   opacity: 0;
   cursor: pointer;
@@ -73,17 +75,17 @@
 
   &.female {
     .container input:checked ~ .checkmark:after {
-      background-color: rgb(229, 76, 123);
+      background-color: $female-color;
     }
 
     .container input:checked ~ .checkmark {
-      border-color: rgb(229, 76, 123);
+      border-color: $female-color;
     }
 
     &:hover .checkmark {
-      border-color: rgb(229, 76, 123);
+      border-color: $female-color;
       &:after {
-        background-color: rgb(229, 76, 123);
+        background-color: $female-color;
       }
     }
   }

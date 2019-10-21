@@ -19,7 +19,11 @@ class Header extends React.Component {
     const { isUserBeingAdded } = this.state;
     return (
       <div className={styles.header}>
-        {isUserBeingAdded && <AddUserModalWindow onClose={this.onModalClose} />}
+        {isUserBeingAdded && (
+          <span className={styles.overlay}>
+            <AddUserModalWindow onClose={this.onModalClose} />
+          </span>
+        )}
         <button className={styles.button} onClick={this.onModalOpen}>
           <FontAwesomeIcon className={styles.addRemoveIcon} icon={faPlusCircle} />
           Add

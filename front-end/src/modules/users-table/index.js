@@ -2,7 +2,7 @@ import React from 'react';
 import { StatusCode, toggleSortingDirection } from '../../utils.js';
 import Header from '../header';
 import UsersList from '../../components/user-list';
-import PaginationModule from '../pagination';
+import Pagination from '../../components/pagination';
 import classNames from 'classnames';
 import styles from './styles.module.scss';
 
@@ -74,42 +74,44 @@ class UsersTable extends React.Component {
     } = this.state;
 
     return (
-      <div className={styles.wrapper}>
-        <Header />
-        <span className={styles.tableHeader}>
-          <div className={styles.nameHeader}>
-            <button
-              className={classNames(styles.ascArrowDirection, {
-                [styles.descArrowDirection]: sortingDirection === 'desc' && sortBy === 'name'
-              })}
-              onClick={() => this.onSortByChange('name')}>
-              &darr;
-            </button>
-            Name
-          </div>
-          <div className={styles.surnameHeader}>Surname</div>
-          <div className={styles.countryHeader}>Country</div>
-          <div className={styles.genderHeader}>Gender</div>
-          <div className={styles.ageHeader}>
-            <button
-              className={classNames(styles.ascArrowDirection, {
-                [styles.descArrowDirection]: sortingDirection === 'desc' && sortBy === 'age'
-              })}
-              onClick={() => this.onSortByChange('age')}>
-              &darr;
-            </button>
-            Age
-          </div>
-        </span>
-        <UsersList users={users} onDeleteUser={this.onDeleteUser} />
-        <PaginationModule
+      <>
+        <div className={styles.wrapper}>
+          <Header />
+          <span className={styles.tableHeader}>
+            <div className={styles.nameHeader}>
+              <button
+                className={classNames(styles.ascArrowDirection, {
+                  [styles.descArrowDirection]: sortingDirection === 'desc' && sortBy === 'name'
+                })}
+                onClick={() => this.onSortByChange('name')}>
+                &darr;
+              </button>
+              Name
+            </div>
+            <div className={styles.surnameHeader}>Surname</div>
+            <div className={styles.countryHeader}>Country</div>
+            <div className={styles.genderHeader}>Gender</div>
+            <div className={styles.ageHeader}>
+              <button
+                className={classNames(styles.ascArrowDirection, {
+                  [styles.descArrowDirection]: sortingDirection === 'desc' && sortBy === 'age'
+                })}
+                onClick={() => this.onSortByChange('age')}>
+                &darr;
+              </button>
+              Age
+            </div>
+          </span>
+          <UsersList users={users} onDeleteUser={this.onDeleteUser} />
+        </div>
+        <Pagination
           page={currentPage}
           usersPerPage={usersPerPage}
           numberOfUsers={numberOfUsers}
           onPageChange={this.onPageChange}
           onUsersPerPageChange={this.onUsersPerPageChange}
         />
-      </div>
+      </>
     );
   }
 }
