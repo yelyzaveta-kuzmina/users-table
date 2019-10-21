@@ -1,1 +1,1 @@
-[![](users-table.gif)]
+[!(users-table.gif)]
