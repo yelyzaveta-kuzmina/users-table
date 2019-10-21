@@ -2,13 +2,9 @@ import React from 'react';
 import styles from './styles.module.scss';
 
 const Pagination = ({ page, usersPerPage, numberOfUsers, onUsersPerPageChange, onPageChange }) => {
-  const startPage = (page - 1) * usersPerPage + 1;
-  const endPage = startPage + usersPerPage - 1;
-
-  const pageNumbers = [];
-  for (let i = 1; i <= Math.ceil(numberOfUsers / usersPerPage); i++) {
-    pageNumbers.push(i);
-  }
+  const pageNumbers = Math.ceil(numberOfUsers / usersPerPage);
+  const firstUserOnPage = (page - 1) * usersPerPage + 1;
+  const lastUserOnPage = firstUserOnPage + usersPerPage - 1;
 
   return (
     <div className={styles.pagination}>
@@ -19,11 +15,11 @@ const Pagination = ({ page, usersPerPage, numberOfUsers, onUsersPerPageChange, o
         <option value={10}>10</option>
         <option value={20}>20</option>
       </select>
-      Showing: {startPage}-{endPage}
+      Showing: {firstUserOnPage}-{Math.min(lastUserOnPage, numberOfUsers)}
       <button disabled={page <= 1} onClick={() => onPageChange(page - 1)}>
         Prev
       </button>
-      <button disabled={page === pageNumbers.length} onClick={() => onPageChange(page + 1)}>
+      <button disabled={page === pageNumbers} onClick={() => onPageChange(page + 1)}>
         Next
       </button>
     </div>
