@@ -2,6 +2,7 @@ import React from 'react';
 import { StatusCode, toggleSortingDirection } from '../../utils.js';
 import Header from '../header';
 import UsersList from '../../components/user-list';
+import PaginationModule from '../pagination';
 import classNames from 'classnames';
 import styles from './styles.module.scss';
 
@@ -12,7 +13,9 @@ class UsersTable extends React.Component {
     users: [],
     numberOfUsers: 0,
     sortBy: 'name',
-    sortingDirection: 'asc'
+    sortingDirection: 'asc',
+    currentPage: 1,
+    usersPerPage: 5
   };
 
   componentDidMount() {
@@ -21,8 +24,10 @@ class UsersTable extends React.Component {
   }
 
   refetchUsers = () => {
-    const { sortingDirection, sortBy } = this.state;
-    fetch(`${API_ORIGIN}/users?sortingDirection=${sortingDirection}&sortBy=${sortBy}`)
+    const { sortingDirection, sortBy, currentPage, usersPerPage } = this.state;
+    fetch(
+      `${API_ORIGIN}/users?sortingDirection=${sortingDirection}&sortBy=${sortBy}&page=${currentPage}&usersPerPage=${usersPerPage}`
+    )
       .then(async (response) => {
         if (response.status === StatusCode.NOT_MODIFIED) {
           return;
@@ -49,9 +54,21 @@ class UsersTable extends React.Component {
     }).then(() => this.refetchUsers({ withCache: false }));
   };
 
+  onPageChange = (page) => this.setState({ currentPage: page });
+  onUsersPerPageChange = (usersPerPage) => this.setState({ usersPerPage });
+
   render() {
-    const { users, sortingDirection, sortBy } = this.state;
-    console.log(sortingDirection);
+    const {
+      users,
+      sortingDirection,
+      sortBy,
+      currentPage,
+      usersPerPage,
+      numberOfUsers
+    } = this.state;
+
+    console.log(currentPage);
+    console.log(usersPerPage);
 
     return (
       <div className={styles.wrapper}>
@@ -82,6 +99,13 @@ class UsersTable extends React.Component {
           </div>
         </span>
         <UsersList users={users} onDeleteUser={this.onDeleteUser} />
+        <PaginationModule
+          page={currentPage}
+          usersPerPage={usersPerPage}
+          numberOfUsers={numberOfUsers}
+          onPageChange={this.onPageChange}
+          onUsersPerPageChange={this.onUsersPerPageChange}
+        />
       </div>
     );
   }
