@@ -8,6 +8,10 @@
     cursor: pointer;
     margin-right: 5px;
 
+    &[disabled] {
+      pointer-events: none;
+    }
+
     &:last-child {
       margin-right: 0;
     }
