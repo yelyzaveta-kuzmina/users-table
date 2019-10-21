@@ -54,7 +54,8 @@ class UsersTable extends React.Component {
     }).then(() => this.refetchUsers({ withCache: false }));
   };
 
-  onPageChange = (page) => this.setState({ currentPage: page });
+  onPageChange = (page, currentPage) =>
+    this.setState({ currentPage: page }, this.refetchUsers(currentPage));
   onUsersPerPageChange = (usersPerPage) => this.setState({ usersPerPage });
 
   render() {
@@ -66,9 +67,7 @@ class UsersTable extends React.Component {
       usersPerPage,
       numberOfUsers
     } = this.state;
-
     console.log(currentPage);
-    console.log(usersPerPage);
 
     return (
       <div className={styles.wrapper}>

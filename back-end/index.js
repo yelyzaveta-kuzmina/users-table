@@ -23,11 +23,11 @@ app.delete('/user', (request, response) => {
 });
 
 app.get('/users', async (request, response) => {
-  const { sortingDirection, sortBy, currentPage, usersPerPage } = request.query;
+  const { sortingDirection, sortBy, page, usersPerPage } = request.query;
   const usersPromise = getAllUsers({
     sortingDirection,
     sortBy,
-    currentPage: Number(currentPage),
+    page: Number(page),
     usersPerPage: Number(usersPerPage)
   });
   const usersCountPromise = getNumberOfUsers();
