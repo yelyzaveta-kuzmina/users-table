@@ -54,8 +54,13 @@ class UsersTable extends React.Component {
     }).then(() => this.refetchUsers({ withCache: false }));
   };
 
-  onPageChange = (page, currentPage) =>
-    this.setState({ currentPage: page }, this.refetchUsers(currentPage));
+  onPageChange = (page) => {
+    if (this.state.page === 1) {
+      return this.state.page;
+    }
+
+    this.setState({ currentPage: page });
+  };
   onUsersPerPageChange = (usersPerPage) => this.setState({ usersPerPage });
 
   render() {

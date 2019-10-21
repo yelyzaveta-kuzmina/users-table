@@ -1,9 +1,14 @@
 import React from 'react';
 import styles from './styles.module.scss';
 
-const Pagination = ({ page, usersPerPage, onUsersPerPageChange, onPageChange }) => {
+const Pagination = ({ page, usersPerPage, numberOfUsers, onUsersPerPageChange, onPageChange }) => {
   const startPage = (page - 1) * usersPerPage + 1;
   const endPage = startPage + usersPerPage - 1;
+
+  const pageNumbers = [];
+  for (let i = 1; i <= Math.ceil(numberOfUsers / usersPerPage); i++) {
+    pageNumbers.push(i);
+  }
 
   return (
     <div className={styles.pagination}>
@@ -15,8 +20,12 @@ const Pagination = ({ page, usersPerPage, onUsersPerPageChange, onPageChange }) 
         <option value={20}>20</option>
       </select>
       Showing: {startPage}-{endPage}
-      <button onClick={() => onPageChange(page - 1)}>Prev</button>
-      <button onClick={() => onPageChange(page + 1)}>Next</button>
+      <button disabled={page <= 1} onClick={() => onPageChange(page - 1)}>
+        Prev
+      </button>
+      <button disabled={page === pageNumbers.length} onClick={() => onPageChange(page + 1)}>
+        Next
+      </button>
     </div>
   );
 };
