@@ -72,7 +72,6 @@ class UsersTable extends React.Component {
       usersPerPage,
       numberOfUsers
     } = this.state;
-    console.log(currentPage);
 
     return (
       <div className={styles.wrapper}>
